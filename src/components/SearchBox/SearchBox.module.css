@@ -1,0 +1,9 @@
+.searchLabel {
+  display: block;
+  text-align: start;
+  font-size: 15px;
+}
+
+.searchInput {
+  width: 95%;
+}

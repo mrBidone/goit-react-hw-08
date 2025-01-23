@@ -1,0 +1,14 @@
+.contactValueWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.userIcon {
+  margin-right: 10px;
+}
+
+.telIcon {
+  margin-right: 10px;
+}
