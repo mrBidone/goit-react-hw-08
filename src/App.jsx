@@ -1,32 +1,41 @@
-import "./App.css";
-import ContactList from "./components/ContactList/ContactList";
-import ContactForm from "./components/ContactForm/ContactForm";
-import SearchBox from "./components/SearchBox/SearchBox";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchContacts } from "./redux/contactsOps";
-import { selectError, selectLoading } from "./redux/contactsSlice";
-import Loader from "./components/Loader/Loader";
+import { Navigate, Route, Routes } from "react-router";
+// import "./App.css";
+import { lazy, Suspense, useEffect } from "react";
+import Layout from "./components/Layout/Layout";
+import AppBar from "./components/AppBar/AppBar";
+import Navigation from "./components/Navigation/Navigation";
+import { useDispatch } from "react-redux";
+import { apiRefreshUserThunk } from "./redux/auth/operations";
+
+const ContactsPage = lazy(() => import("./pages/ContactsPage"));
+const HomePage = lazy(() => import("./pages/HomePage"));
+const RegistrationPage = lazy(() => import("./pages/RegistrationPage"));
+const LoginPage = lazy(() => import("./pages/LoginPage"));
 
 function App() {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectLoading);
-  const isError = useSelector(selectError);
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(apiRefreshUserThunk());
   }, [dispatch]);
+
   return (
     <>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <SearchBox />
-      {!isLoading ? <ContactList /> : <Loader />}
-      {isError && (
-        <p style={{ color: "red" }}>
-          OOOPS... Error: "{isError}". Please try again later.
-        </p>
-      )}
+      <Layout>
+        <AppBar>
+          <Navigation />
+        </AppBar>
+      </Layout>
+
+      <Suspense>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/contacts" element={<ContactsPage />} />
+          <Route path="/register" element={<RegistrationPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </Suspense>
     </>
   );
 }
