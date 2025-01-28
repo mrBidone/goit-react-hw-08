@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
 import { apiRegisterThunk } from "../redux/auth/operations";
 import { selectAuthError } from "../redux/auth/selectors";
+import SpotlightCard from "../components/SpotlightCard/SpotlightCard";
 
 const RegistrationValuesValidationSchema = Yup.object().shape({
   name: Yup.string()
@@ -34,35 +35,37 @@ const RegistrationPage = () => {
   };
 
   return (
-    <Formik
-      initialValues={INITITAL_VALUES}
-      onSubmit={handleSubmit}
-      validationSchema={RegistrationValuesValidationSchema}
-    >
-      <Form>
-        <label htmlFor="name">
-          <span>User`s name:</span>
-          <Field type="text" name="name" placeholder="Enter your name" />
-          <ErrorMessage name="name" component="span" />
-        </label>
-        <label htmlFor="email">
-          <span>Email: </span>
-          <Field type="text" name="email" placeholder="Enter your email" />
-          <ErrorMessage name="email" component="span" />
-        </label>
-        <label htmlFor="password">
-          <span>Password: </span>
-          <Field
-            type="password"
-            name="password"
-            placeholder="Enter your password"
-          />
-          <ErrorMessage name="password" component="span" />
-        </label>
-        <button type="submit">Sign Up</button>
-        {isError && <p>Oooops, some error occured... {isError}</p>}
-      </Form>
-    </Formik>
+    <SpotlightCard spotlightColor="rgba(14, 171, 32, 0.25)">
+      <Formik
+        initialValues={INITITAL_VALUES}
+        onSubmit={handleSubmit}
+        validationSchema={RegistrationValuesValidationSchema}
+      >
+        <Form>
+          <label htmlFor="name">
+            <span>User`s name:</span>
+            <Field type="text" name="name" placeholder="Enter your name" />
+            <ErrorMessage name="name" component="span" />
+          </label>
+          <label htmlFor="email">
+            <span>Email: </span>
+            <Field type="text" name="email" placeholder="Enter your email" />
+            <ErrorMessage name="email" component="span" />
+          </label>
+          <label htmlFor="password">
+            <span>Password: </span>
+            <Field
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+            />
+            <ErrorMessage name="password" component="span" />
+          </label>
+          <button type="submit">Sign Up</button>
+          {isError && <p>Oooops, some error occured... {isError}</p>}
+        </Form>
+      </Formik>
+    </SpotlightCard>
   );
 };
 

@@ -2,8 +2,6 @@ import { Navigate, Route, Routes } from "react-router";
 // import "./App.css";
 import { lazy, Suspense, useEffect } from "react";
 import Layout from "./components/Layout/Layout";
-import AppBar from "./components/AppBar/AppBar";
-import Navigation from "./components/Navigation/Navigation";
 import { useDispatch } from "react-redux";
 import { apiRefreshUserThunk } from "./redux/auth/operations";
 
@@ -21,11 +19,7 @@ function App() {
 
   return (
     <>
-      <Layout>
-        <AppBar>
-          <Navigation />
-        </AppBar>
-      </Layout>
+      <Layout></Layout>
 
       <Suspense>
         <Routes>

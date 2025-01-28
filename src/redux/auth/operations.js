@@ -41,9 +41,7 @@ export const logoutThunk = createAsyncThunk(
   "auth/logout",
   async (login, thunkApi) => {
     try {
-      const { data } = await axios.post(
-        "https://connections-api.goit.global/users/logout"
-      );
+      const { data } = await instance.post("users/logout");
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);

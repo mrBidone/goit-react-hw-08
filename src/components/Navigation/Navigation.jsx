@@ -12,9 +12,9 @@ const Navigation = () => {
     <nav>
       <NavLink to="/">Home</NavLink>
       {isLoggedIn && <NavLink to="/contacts">Contacts</NavLink>}
-      {!isLoggedIn && <NavLink to="/register">Register</NavLink>}
-      {!isLoggedIn && <NavLink to="/login">Login</NavLink>}
       {isLoggedIn && user && <p>Hello, {user.name}!</p>}
+      {!isLoggedIn && <NavLink to="/login"> Login </NavLink>}
+      {!isLoggedIn && <NavLink to="/register">Registration</NavLink>}
     </nav>
   );
 };

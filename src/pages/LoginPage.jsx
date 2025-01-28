@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import { apiLoginThunk } from "../redux/auth/operations";
 import { useScroll } from "@react-spring/web";
 import { selectAuthError } from "../redux/auth/selectors";
+import SpotlightCard from "../components/SpotlightCard/SpotlightCard";
 
 const LoginValuesValidationSchema = Yup.object().shape({
   password: Yup.string()
@@ -30,30 +31,32 @@ const LoginPage = () => {
   };
 
   return (
-    <Formik
-      initialValues={INITITAL_VALUES}
-      onSubmit={handleSubmit}
-      validationSchema={LoginValuesValidationSchema}
-    >
-      <Form>
-        <label htmlFor="email">
-          <span>Email: </span>
-          <Field type="text" name="email" placeholder="Enter your email" />
-          <ErrorMessage name="email" component="span" />
-        </label>
-        <label htmlFor="password">
-          <span>Password: </span>
-          <Field
-            type="password"
-            name="password"
-            placeholder="Enter your password"
-          />
-          <ErrorMessage name="password" component="span" />
-        </label>
-        <button type="submit">Login</button>
-        {isError && <p>Oooops, some error occured... {isError}</p>}
-      </Form>
-    </Formik>
+    <SpotlightCard spotlightColor="rgba(207, 11, 201, 0.25)">
+      <Formik
+        initialValues={INITITAL_VALUES}
+        onSubmit={handleSubmit}
+        validationSchema={LoginValuesValidationSchema}
+      >
+        <Form>
+          <label htmlFor="email">
+            <span>Email: </span>
+            <Field type="text" name="email" placeholder="Enter your email" />
+            <ErrorMessage name="email" component="span" />
+          </label>
+          <label htmlFor="password">
+            <span>Password: </span>
+            <Field
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+            />
+            <ErrorMessage name="password" component="span" />
+          </label>
+          <button type="submit">Login</button>
+          {isError && <p>Oooops, some error occured... {isError}</p>}
+        </Form>
+      </Formik>
+    </SpotlightCard>
   );
 };
 
