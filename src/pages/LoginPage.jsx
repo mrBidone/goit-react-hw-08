@@ -1,9 +1,7 @@
 import { Form, ErrorMessage, Field, Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-
 import * as Yup from "yup";
 import { apiLoginThunk } from "../redux/auth/operations";
-import { useScroll } from "@react-spring/web";
 import { selectAuthError } from "../redux/auth/selectors";
 import SpotlightCard from "../components/SpotlightCard/SpotlightCard";
 

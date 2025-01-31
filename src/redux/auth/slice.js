@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   apiLoginThunk,
+  apiLogoutThunk,
   apiRefreshUserThunk,
   apiRegisterThunk,
 } from "./operations";
@@ -56,6 +57,15 @@ const authSlice = createSlice({
       .addCase(apiRefreshUserThunk.rejected, (state, action) => {
         state.error = action.payload;
         state.isRefreshing = false;
+      })
+      .addCase(apiLogoutThunk.pending, (state) => {
+        state.error = null;
+      })
+      .addCase(apiLogoutThunk.fulfilled, () => {
+        return INITIAL_STATE;
+      })
+      .addCase(apiLogoutThunk.rejected, (state, action) => {
+        state.error = action.payload;
       }),
 });
 

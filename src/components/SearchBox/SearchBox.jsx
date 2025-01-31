@@ -7,7 +7,9 @@ const SearchBox = () => {
   const searchInputID = useId();
   const dispatch = useDispatch();
 
-  const filterValue = useSelector((state) => state.filter.name || "");
+  const filterValue = useSelector(
+    (state) => state.filter.name || state.filter.number || ""
+  );
 
   const handleFilter = (event) => {
     dispatch(setFilterValue(event.target.value));
@@ -16,14 +18,14 @@ const SearchBox = () => {
   return (
     <>
       <label className={css.searchLabel} htmlFor={searchInputID}>
-        Find contacts by name
+        Find contacts by name or numbers
       </label>
       <input
         className={css.searchInput}
         id={searchInputID}
         type="text"
         name="searchInput"
-        placeholder="Enter contact name"
+        placeholder="Enter contact name or numbers"
         value={filterValue}
         onChange={handleFilter}
       />

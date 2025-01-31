@@ -2,15 +2,21 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useId } from "react";
 import * as Yup from "yup";
 import css from "./ContactForm.module.css";
+import "react-international-phone/style.css";
 
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contacts/operations";
+import { addContactThunk } from "../../redux/contacts/operations";
+import toast from "react-hot-toast";
 
 const ContactForm = () => {
   const dispatch = useDispatch();
 
   const onAddContact = (contact) => {
-    dispatch(addContact(contact));
+    dispatch(addContactThunk(contact))
+      .unwrap()
+      .then(() => {
+        toast.success("Contact added successfully");
+      });
   };
 
   const INITIAL_VALUES = {
@@ -54,41 +60,50 @@ const ContactForm = () => {
         onSubmit={handleSubmit}
         validationSchema={ContactValidationSchema}
       >
-        <Form className={css.form}>
-          <label className={css.label} htmlFor={nameFieldId}>
-            Name
-          </label>
-          <Field
-            className={css.field}
-            type="text"
-            name="contactName"
-            id={nameFieldId}
-          />
-          <ErrorMessage
-            className={css.errorMessage}
-            name="contactName"
-            component="span"
-          />
+        {({ isValid, dirty }) => (
+          <Form className={css.form}>
+            <label className={css.label} htmlFor={nameFieldId}>
+              Name
+            </label>
+            <Field
+              className={css.field}
+              type="text"
+              name="contactName"
+              id={nameFieldId}
+              placeholder="John Smith"
+            />
+            <ErrorMessage
+              className={css.errorMessage}
+              name="contactName"
+              component="span"
+            />
 
-          <label className={css.label} htmlFor={numberFieldId}>
-            Number
-          </label>
-          <Field
-            className={css.field}
-            type="text"
-            name="contactNumber"
-            id={numberFieldId}
-          />
-          <ErrorMessage
-            className={css.errorMessage}
-            name="contactNumber"
-            component="span"
-          />
+            <label className={css.label} htmlFor={numberFieldId}>
+              Number
+            </label>
+            <Field
+              className={css.field}
+              type="text"
+              name="contactNumber"
+              id={numberFieldId}
+              placeholder="111-222-33-44"
+            />
 
-          <button className={css.submitBtn} type="submit">
-            Add contact
-          </button>
-        </Form>
+            <ErrorMessage
+              className={css.errorMessage}
+              name="contactNumber"
+              component="span"
+            />
+
+            <button
+              className={css.submitBtn}
+              type="submit"
+              disabled={!(isValid && dirty)}
+            >
+              Add contact
+            </button>
+          </Form>
+        )}
       </Formik>
     </>
   );

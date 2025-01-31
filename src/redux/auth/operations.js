@@ -37,9 +37,9 @@ export const apiLoginThunk = createAsyncThunk(
   }
 );
 
-export const logoutThunk = createAsyncThunk(
+export const apiLogoutThunk = createAsyncThunk(
   "auth/logout",
-  async (login, thunkApi) => {
+  async (_, thunkApi) => {
     try {
       const { data } = await instance.post("users/logout");
       return data;
@@ -62,5 +62,13 @@ export const apiRefreshUserThunk = createAsyncThunk(
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
+  },
+  {
+    condition: (_, thunkApi) => {
+      const state = thunkApi.getState();
+      const token = state.auth.token;
+      if (token) return true;
+      return false;
+    },
   }
 );

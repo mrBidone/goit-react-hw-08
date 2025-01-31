@@ -2,6 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const INITIAL_STATE = {
   name: "",
+  number: "",
+  showTrash: false,
+  statusFilter: "",
 };
 
 export const filtersSlice = createSlice({
@@ -9,12 +12,19 @@ export const filtersSlice = createSlice({
   initialState: INITIAL_STATE,
   reducers: {
     setFilterValue(state, action) {
-      state.name = action.payload;
+      (state.name = action.payload), (state.number = action.payload);
+    },
+    setStatusFilter(state, action) {
+      state.statusFilter = action.payload;
+    },
+    toggleShowTrash(state) {
+      state.showTrash = !state.showTrash;
     },
   },
 });
 
-export const selectFilter = (state) => state.filter.name;
+export const selectFilter = (state) => state.filter.name || state.filter.number;
 
 export const filterReducer = filtersSlice.reducer;
-export const { setFilterValue } = filtersSlice.actions;
+export const { setFilterValue, toggleShowTrash, setStatusFilter } =
+  filtersSlice.actions;
