@@ -10,6 +10,13 @@ export const selectIsMovedInTrash = createSelector(
   [selectContacts, (_, id) => id],
   (contacts, id) => contacts.find((contact) => contact.id === id)?.moveToTrash
 );
+export const selectIsMovedtoTrashCounter = (state) => {
+  const contacts = selectContacts(state);
+  return contacts.reduce(
+    (total, curr) => (curr.moveToTrash ? total + 1 : total),
+    0
+  );
+};
 
 // export const selectSortContacts = createSelector(
 //   [selectContacts, selectSortByType],

@@ -8,6 +8,7 @@ import {
   selectContacts,
   selectContactsError,
   selectContactsLoading,
+  selectIsMovedtoTrashCounter,
 } from "../redux/contacts/selectors";
 import { fetchContactsThunk } from "../redux/contacts/operations";
 import toast from "react-hot-toast";
@@ -17,6 +18,7 @@ import { toggleShowTrash } from "../redux/filters/slice";
 import { selectShowTrash } from "../redux/filters/selectors";
 import { Link, Outlet } from "react-router";
 import TrashList from "../components/TrashList/TrashList";
+import { Badge } from "@mui/material";
 
 const ContactsPage = () => {
   const dispatch = useDispatch();
@@ -24,6 +26,7 @@ const ContactsPage = () => {
   const isError = useSelector(selectContactsError);
   const contacts = useSelector(selectContacts);
   const showTrash = useSelector(selectShowTrash);
+  const trashCounter = useSelector(selectIsMovedtoTrashCounter);
 
   useEffect(() => {
     dispatch(fetchContactsThunk())
@@ -32,15 +35,23 @@ const ContactsPage = () => {
         toast.success("Contacts was loaded"); // ==================== ??????????
       });
   }, [dispatch]);
+
   return (
     <div>
       <h1>Phonebook</h1>
-      <button type="button" onClick={() => dispatch(toggleShowTrash())}>
-        {showTrash ? <RiContactsBook2Fill /> : <FaTrash color="white" />}
-      </button>
-      {showTrash ? (
-        <TrashList />
-      ) : (
+      {trashCounter > 0 && (
+        <button type="button" onClick={() => dispatch(toggleShowTrash())}>
+          {showTrash ? (
+            <RiContactsBook2Fill />
+          ) : (
+            <Badge badgeContent={trashCounter} color="primary">
+              <FaTrash color="white" />
+            </Badge>
+          )}
+        </button>
+      )}
+
+      {(!showTrash || (showTrash && trashCounter === 0)) && (
         <>
           <ContactForm />
           {contacts.length > 1 && <SearchBox />}
@@ -52,6 +63,7 @@ const ContactsPage = () => {
           )}
         </>
       )}
+      {showTrash && trashCounter > 0 && <TrashList />}
     </div>
   );
 };
