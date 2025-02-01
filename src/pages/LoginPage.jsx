@@ -38,7 +38,12 @@ const LoginPage = () => {
         <Form>
           <label htmlFor="email">
             <span>Email: </span>
-            <Field type="text" name="email" placeholder="Enter your email" />
+            <Field
+              type="text"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
+            />
             <ErrorMessage name="email" component="span" />
           </label>
           <label htmlFor="password">
@@ -46,6 +51,7 @@ const LoginPage = () => {
             <Field
               type="password"
               name="password"
+              id="password"
               placeholder="Enter your password"
             />
             <ErrorMessage name="password" component="span" />

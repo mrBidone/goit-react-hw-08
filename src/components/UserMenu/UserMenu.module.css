@@ -1,0 +1,38 @@
+.userMenu {
+    display: flex;
+    margin-left: auto;
+    gap: 20px;
+    align-items: center;
+}
+
+
+
+.userDataText {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    gap: 5px
+}
+
+
+
+.logoutBtn {
+    display: flex;
+    width: 70px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+    background-color: transparent;
+    color: #808080;
+    border: 1px solid #808080;
+    border-radius: 5px;
+    cursor: pointer;
+    gap: 2px;
+    transition: border-color 250ms linear, color 250ms linear;
+
+    &:hover {
+        border-color: rgb(231, 15, 177);
+        color: black
+    }
+}

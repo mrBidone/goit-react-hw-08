@@ -1,0 +1,19 @@
+.pageNav {
+    display: flex;
+    gap: 10px;
+}
+
+.pageNavLink {
+    color: #808080;
+    padding-bottom: 2px;
+    font-size: 20px;
+}
+
+.linkActive::after {
+    display: block;
+    content: "";
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+    background-color: rgb(231, 15, 177);
+}

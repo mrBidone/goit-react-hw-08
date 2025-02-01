@@ -8,7 +8,7 @@ import EditForm from "../EditForm/EditForm";
 const Contact = ({ name, number, onDeleteContact, id }) => {
   const dispatch = useDispatch();
   const isCurrentContact = useSelector(selectCurrentContact);
-  const isCurrent = isCurrentContact?.id === id; //===========?
+  const isCurrent = isCurrentContact?.id === id;
 
   const onEditContact = (contact) => {
     dispatch(currentContact(contact));

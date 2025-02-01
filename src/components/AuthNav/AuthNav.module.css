@@ -1,0 +1,27 @@
+.authNav {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+    align-items: center;
+}
+
+.pageNavLink {
+    color: #808080;
+    padding-bottom: 2px;
+    font-size: 20px;
+}
+
+.customGradient {
+    font-size: 20px;
+    padding: 5px 5px;
+    line-height: 1.2;
+}
+
+.linkActive::after {
+    display: block;
+    content: "";
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+    background-color: rgb(231, 15, 177);
+}

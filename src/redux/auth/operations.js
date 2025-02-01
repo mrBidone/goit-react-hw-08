@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export const instance = axios.create({
   baseURL: "https://connections-api.goit.global/",
@@ -32,6 +33,10 @@ export const apiLoginThunk = createAsyncThunk(
       console.log(data);
       return data;
     } catch (error) {
+      if (error.status === 400) {
+        toast.error("email or login is not correct");
+        return thunkApi.rejectWithValue(error.message);
+      }
       return thunkApi.rejectWithValue(error.message);
     }
   }

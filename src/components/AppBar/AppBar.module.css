@@ -1,0 +1,19 @@
+.pageHeader {
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+}
+
+.pageHeader::before {
+    content: " ";
+    width: 20px;
+    height: 20px;
+    background-color: rgb(231, 15, 177);
+    border-radius: 100%;
+    margin-right: 10px;
+}
+
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+}

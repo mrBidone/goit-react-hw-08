@@ -44,12 +44,22 @@ const RegistrationPage = () => {
         <Form>
           <label htmlFor="name">
             <span>User`s name:</span>
-            <Field type="text" name="name" placeholder="Enter your name" />
+            <Field
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Enter your name"
+            />
             <ErrorMessage name="name" component="span" />
           </label>
           <label htmlFor="email">
             <span>Email: </span>
-            <Field type="text" name="email" placeholder="Enter your email" />
+            <Field
+              type="text"
+              name="email"
+              id="email"
+              placeholder="Enter your email"
+            />
             <ErrorMessage name="email" component="span" />
           </label>
           <label htmlFor="password">
@@ -58,6 +68,7 @@ const RegistrationPage = () => {
               type="password"
               name="password"
               placeholder="Enter your password"
+              id="password"
             />
             <ErrorMessage name="password" component="span" />
           </label>
