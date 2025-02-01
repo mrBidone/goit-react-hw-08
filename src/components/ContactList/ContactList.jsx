@@ -26,10 +26,6 @@ const ContactList = () => {
   //   sortedContacts.reverse();
   // }
 
-  const filteredContactsByTrash = filteredContacts.filter(
-    (contact) => !contact.moveToTrash
-  );
-
   return (
     <>
       {/* <button onClick={() => setIsSortedByName((prev) => !prev)}>
@@ -39,7 +35,7 @@ const ContactList = () => {
         Sorted by Add <TiArrowUnsorted />
       </button> */}
       <ul className={css.ContactList}>
-        {filteredContactsByTrash.map(({ id, name, number }) => (
+        {filteredContacts.map(({ id, name, number }) => (
           <li className={css.ContactListItem} key={id}>
             <Contact
               id={id}

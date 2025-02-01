@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { apiRefreshUserThunk } from "./redux/auth/operations";
 import { RestrictedRoute } from "./components/RestrictedRoute";
 import { PrivateRoute } from "./components/PrivateRoute";
-import TrashList from "./components/TrashList/TrashList";
 
 const ContactsPage = lazy(() => import("./pages/ContactsPage"));
 const HomePage = lazy(() => import("./pages/HomePage"));

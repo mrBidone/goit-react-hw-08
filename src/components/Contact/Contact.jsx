@@ -1,20 +1,14 @@
 import { FaUser, FaPhoneAlt } from "react-icons/fa";
 import css from "./Contact.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { currentContact, moveContactToTrash } from "../../redux/contacts/slice";
-import {
-  selectCurrentContact,
-  selectIsMovedInTrash,
-} from "../../redux/contacts/selectors";
+import { currentContact } from "../../redux/contacts/slice";
+import { selectCurrentContact } from "../../redux/contacts/selectors";
 import EditForm from "../EditForm/EditForm";
 
-const Contact = ({ name, number, onDeleteContact, id, onRestoreContact }) => {
+const Contact = ({ name, number, onDeleteContact, id }) => {
   const dispatch = useDispatch();
   const isCurrentContact = useSelector(selectCurrentContact);
-  const isCurrent = isCurrentContact?.id === id;
-  const isMovedinTrash = useSelector((state) =>
-    selectIsMovedInTrash(state, id)
-  ); /// =============?
+  const isCurrent = isCurrentContact?.id === id; //===========?
 
   const onEditContact = (contact) => {
     dispatch(currentContact(contact));
@@ -38,10 +32,8 @@ const Contact = ({ name, number, onDeleteContact, id, onRestoreContact }) => {
           </>
         )}
       </div>
-
-      {!isMovedinTrash ? (
+      {!isCurrent && (
         <>
-          {" "}
           <button
             type="button"
             onClick={() => {
@@ -49,20 +41,6 @@ const Contact = ({ name, number, onDeleteContact, id, onRestoreContact }) => {
             }}
           >
             Edit
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              dispatch(moveContactToTrash(id));
-            }}
-          >
-            toTrash
-          </button>
-        </>
-      ) : (
-        <>
-          <button type="button" onClick={() => onRestoreContact(id)}>
-            Restore
           </button>
           <button type="button" onClick={() => onDeleteContact(id)}>
             Delete

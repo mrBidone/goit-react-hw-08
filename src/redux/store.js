@@ -21,12 +21,6 @@ const authConfig = {
   whitelist: ["token"],
 };
 
-// const filterConfig = {
-//   key: "contactInTrash",
-//   storage,
-//   whitelist: ["moveToTrash"],
-// };
-
 export const store = configureStore({
   reducer: {
     contacts: contactsReducer,

@@ -8,6 +8,7 @@ import { disableCurrentContact } from "../../redux/contacts/slice";
 import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useId } from "react";
+import { FaPhoneAlt, FaUser } from "react-icons/fa";
 
 const EditForm = () => {
   const dispatch = useDispatch();
@@ -63,39 +64,49 @@ const EditForm = () => {
         enableReinitialize={true}
         validationSchema={ContactValidationSchema}
       >
-        <Form
-        //   className={css.form}
-        >
-          <Field
-            //   className={css.field}
-            type="text"
-            name="editContactName"
-            id={editNameFieldId}
-          />
-          <ErrorMessage
-            //   className={css.errorMessage}
-            name="editContactName"
-            component="span"
-          />
-          <Field
-            //   className={css.field}
-            type="text"
-            name="editContactNumber"
-            id={editNumberFieldId}
-          />
-          <ErrorMessage
-            //   className={css.errorMessage}
-            name="editContactNumber"
-            component="span"
-          />
-          <button type="submit">✅</button>
-          <button
-            onClick={() => dispatch(disableCurrentContact())}
-            type="button"
+        {({ dirty }) => (
+          <Form
+          //   className={css.form}
           >
-            ❌
-          </button>
-        </Form>
+            <label htmlFor={editNameFieldId}>
+              <FaUser />
+            </label>
+            <Field
+              //   className={css.field}
+              type="text"
+              name="editContactName"
+              id={editNameFieldId}
+            />
+            <ErrorMessage
+              //   className={css.errorMessage}
+              name="editContactName"
+              component="span"
+            />
+            <label htmlFor={editNumberFieldId}>
+              <FaPhoneAlt />
+            </label>
+            <Field
+              //   className={css.field}
+              type="text"
+              name="editContactNumber"
+              id={editNumberFieldId}
+            />
+            <ErrorMessage
+              //   className={css.errorMessage}
+              name="editContactNumber"
+              component="span"
+            />
+            <button type="submit" disabled={!dirty}>
+              ✅
+            </button>
+            <button
+              onClick={() => dispatch(disableCurrentContact())}
+              type="button"
+            >
+              ❌
+            </button>
+          </Form>
+        )}
       </Formik>
     </>
   );

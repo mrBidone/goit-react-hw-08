@@ -23,22 +23,6 @@ export const contactsSlice = createSlice({
     disableCurrentContact: (state) => {
       state.currentContact = null;
     },
-    moveContactToTrash(state, action) {
-      const contact = state.items.find(
-        (contact) => contact.id === action.payload
-      );
-      if (contact) {
-        contact.moveToTrash = true;
-      }
-    },
-    restoreContactFromTrash(state, action) {
-      const contact = state.items.find(
-        (contact) => contact.id === action.payload
-      );
-      if (contact) {
-        contact.moveToTrash = false;
-      }
-    },
   },
   extraReducers: (builder) => {
     builder
@@ -86,7 +70,7 @@ export const contactsSlice = createSlice({
       })
       .addCase(editContactThunk.fulfilled, (state, action) => {
         state.loading = false;
-        const item = state.items.find((item) => item.id !== action.payload.id);
+        const item = state.items.find((item) => item.id === action.payload.id);
         if (item) {
           item.name = action.payload.name;
           item.number = action.payload.number;
