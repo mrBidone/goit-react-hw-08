@@ -16,7 +16,7 @@ const AuthNav = () => {
         Sign in
       </NavLink>
       <GradientText
-        colors={["#0418f7", "#e70fb1", "#0418f7", "#e70fb1", "#0418f7"]}
+        colors={["#000000", "#e70fb1", "#000000", "#e70fb1", "#000000"]}
         animationSpeed={5}
         showBorder={true}
         className={css.customGradient}
