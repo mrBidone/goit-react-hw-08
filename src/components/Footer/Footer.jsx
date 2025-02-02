@@ -1,6 +1,7 @@
+import css from "./Footer.module.css";
 const Footer = () => {
   return (
-    <footer className="footer">
+    <footer className={css.footer}>
       <div className="footer-content">
         <div className="footer-section">
           <h2>Phonebook</h2>

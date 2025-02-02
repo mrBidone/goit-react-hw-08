@@ -97,12 +97,19 @@ body {
 }
 
 .heroLink {
-  display: flex;
+  min-width: 70px;
+  padding: 8px;
+  border: 1px solid white;
+  border-radius: 8px;
+
+  transition: border 250ms linear;
 
   &:hover {
-    border-bottom: 1px solid #e70fb1;
+    border: 1px solid #e70fb1;
   }
 }
+
+
 
 .sectionWrapper {
   display: flex;
@@ -142,7 +149,7 @@ body {
   padding: 10px;
   flex-direction: column;
   align-items: center;
-  border: 1px solid #808080;
+  border: 1px solid #e70fb1;
   border-radius: 8px;
   color: #808080;
 }

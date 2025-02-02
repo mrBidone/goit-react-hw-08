@@ -4,64 +4,58 @@ import { selectAuthIsLoggedIn } from "../redux/auth/selectors";
 import { Link } from "react-router";
 import SplitText from "../components/SplitText/SplitText";
 import { FaReact } from "react-icons/fa";
-import {
-  SiReactrouter,
-  SiAxios,
-  SiRedux,
-  SiMockserviceworker,
-  SiFormik,
-} from "react-icons/si";
+import { SiReactrouter, SiAxios, SiRedux, SiFormik } from "react-icons/si";
 import { GrToast } from "react-icons/gr";
 
 const HomePage = () => {
   const isLoggedIn = useSelector(selectAuthIsLoggedIn);
 
   return (
-    <div className="container">
-      <div className="pageHero">
-        <Squares
-          speed={0.5}
-          squareSize={40}
-          direction="diagonal"
-          borderColor="#909090"
-          hoverFillColor="#e70fb1"
-        >
-          <h1>
-            <SplitText
-              text="Welcome to Phonebook!"
-              className="mainTitle"
-              delay={150}
-              animationFrom={{
-                opacity: 0,
-                transform: "translate3d(0,50px,0)",
-              }}
-              animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
-              easing="easeOutCubic"
-              threshold={0.2}
-              rootMargin="-50px"
-            />
-          </h1>
+    <main className="">
+      <div className="heroContainer">
+        <div className="pageHero">
+          <Squares
+            speed={0.5}
+            squareSize={40}
+            direction="diagonal"
+            borderColor="#909090"
+            hoverFillColor="#e70fb1"
+          >
+            <h1>
+              <SplitText
+                text="Welcome to Phonebook!"
+                className="mainTitle"
+                delay={150}
+                animationFrom={{
+                  opacity: 0,
+                  transform: "translate3d(0,50px,0)",
+                }}
+                animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
+                easing="easeOutCubic"
+                threshold={0.2}
+                rootMargin="-50px"
+              />
+            </h1>
 
-          <p className="heroDescr">
-            Easily <span className="accentHeroDescr">manage</span> your contacts
-            with our intuitive and efficient phonebook application.&nbsp;
-            <span className="accentHeroDescr">Store</span>, edit, and organize
-            your <span className="accentHeroDescr">contacts</span> in just a few{" "}
-            <span className="accentHeroDescr">clicks</span>.
-          </p>
-          {!isLoggedIn && (
-            <div className="heroLinksWrapper">
-              <Link className="heroLink" to="/login">
-                Sign in
-              </Link>
-              <Link className="heroLink registerLink" to="/register">
-                Register
-              </Link>
-            </div>
-          )}
-        </Squares>
+            <p className="heroDescr">
+              Easily <span className="accentHeroDescr">manage</span> your
+              contacts with our intuitive and efficient phonebook
+              application.&nbsp;
+              <span className="accentHeroDescr">Store</span>, edit, and organize
+              your <span className="accentHeroDescr">contacts</span> in just a
+              few <span className="accentHeroDescr">clicks</span>.
+            </p>
+            {!isLoggedIn && (
+              <div className="heroLinksWrapper">
+                <Link className="heroLink" to="/login">
+                  Sign in
+                </Link>
+              </div>
+            )}
+          </Squares>
+        </div>
       </div>
-      <div className="sectionWrapper">
+      <div className="container sectionWrapper">
         <section className="section aboutSection">
           <h2>About the Project</h2>
           <p>
@@ -83,36 +77,38 @@ const HomePage = () => {
           <p>Start managing your contacts effortlessly today! </p>
         </section>
       </div>
-      <section className="section technologiesSection">
-        <h2 className="sectionTitle">Technologies Used</h2>
-        <ul className="technologiesList">
-          <li className="technologiesListItem">
-            <FaReact />
-            <p>React.js</p>
-          </li>
-          <li className="technologiesListItem">
-            <SiRedux />
-            <p>Redux Toolkit</p>
-          </li>
-          <li className="technologiesListItem">
-            <SiReactrouter />
-            <p>React Router</p>
-          </li>
-          <li className="technologiesListItem">
-            <SiAxios />
-            <p>Axios</p>
-          </li>
-          <li className="technologiesListItem">
-            <SiFormik />
-            <p>Formik</p>
-          </li>
-          <li className="technologiesListItem">
-            <GrToast />
-            <p>React Hot Toast</p>
-          </li>
-        </ul>
-      </section>
-    </div>
+      <div className="container">
+        <section className="section technologiesSection">
+          <h2 className="sectionTitle">Technologies Used</h2>
+          <ul className="technologiesList">
+            <li className="technologiesListItem">
+              <FaReact />
+              <p>React.js</p>
+            </li>
+            <li className="technologiesListItem">
+              <SiRedux />
+              <p>Redux Toolkit</p>
+            </li>
+            <li className="technologiesListItem">
+              <SiReactrouter />
+              <p>React Router</p>
+            </li>
+            <li className="technologiesListItem">
+              <SiAxios />
+              <p>Axios</p>
+            </li>
+            <li className="technologiesListItem">
+              <SiFormik />
+              <p>Formik</p>
+            </li>
+            <li className="technologiesListItem">
+              <GrToast />
+              <p>React Hot Toast</p>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </main>
   );
 };
 
