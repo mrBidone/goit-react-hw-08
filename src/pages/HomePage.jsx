@@ -11,7 +11,7 @@ const HomePage = () => {
   const isLoggedIn = useSelector(selectAuthIsLoggedIn);
 
   return (
-    <main className="">
+    <div className="pageContainer">
       <div className="heroContainer">
         <div className="pageHero">
           <Squares
@@ -108,7 +108,7 @@ const HomePage = () => {
           </ul>
         </section>
       </div>
-    </main>
+    </div>
   );
 };
 

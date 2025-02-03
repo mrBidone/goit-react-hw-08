@@ -21,7 +21,6 @@ function App() {
 
   return (
     <>
-      <Toaster />
       <Layout>
         <Suspense>
           <Routes>
@@ -42,6 +41,7 @@ function App() {
           </Routes>
         </Suspense>
       </Layout>
+      <Toaster />
     </>
   );
 }

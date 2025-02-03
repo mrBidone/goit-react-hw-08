@@ -5,6 +5,9 @@ import * as Yup from "yup";
 import { apiRegisterThunk } from "../redux/auth/operations";
 import { selectAuthError } from "../redux/auth/selectors";
 import SpotlightCard from "../components/SpotlightCard/SpotlightCard";
+import { FaRegUserCircle } from "react-icons/fa";
+import { RiLockPasswordFill } from "react-icons/ri";
+import { MdAlternateEmail } from "react-icons/md";
 
 const RegistrationValuesValidationSchema = Yup.object().shape({
   name: Yup.string()
@@ -35,48 +38,80 @@ const RegistrationPage = () => {
   };
 
   return (
-    <SpotlightCard spotlightColor="rgba(14, 171, 32, 0.25)">
-      <Formik
-        initialValues={INITITAL_VALUES}
-        onSubmit={handleSubmit}
-        validationSchema={RegistrationValuesValidationSchema}
-      >
-        <Form>
-          <label htmlFor="name">
-            <span>User`s name:</span>
-            <Field
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Enter your name"
-            />
-            <ErrorMessage name="name" component="span" />
-          </label>
-          <label htmlFor="email">
-            <span>Email: </span>
-            <Field
-              type="text"
-              name="email"
-              id="email"
-              placeholder="Enter your email"
-            />
-            <ErrorMessage name="email" component="span" />
-          </label>
-          <label htmlFor="password">
-            <span>Password: </span>
-            <Field
-              type="password"
-              name="password"
-              placeholder="Enter your password"
-              id="password"
-            />
-            <ErrorMessage name="password" component="span" />
-          </label>
-          <button type="submit">Sign Up</button>
-          {isError && <p>Oooops, some error occured... {isError}</p>}
-        </Form>
-      </Formik>
-    </SpotlightCard>
+    <div className="authPageWrapper">
+      <SpotlightCard spotlightColor="rgba(14, 171, 32, 0.41)">
+        <Formik
+          initialValues={INITITAL_VALUES}
+          onSubmit={handleSubmit}
+          validationSchema={RegistrationValuesValidationSchema}
+        >
+          <Form className="authContainer">
+            <h1 className="loginMainTitle">Registration</h1>
+            <label htmlFor="name">
+              <div className="formWrapper">
+                <span className="formSpan">
+                  <FaRegUserCircle />
+                </span>
+                <Field
+                  className="authForm"
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="Enter your name"
+                />
+                <ErrorMessage
+                  className="formErrorMessage"
+                  name="name"
+                  component="span"
+                />
+              </div>
+            </label>
+            <label htmlFor="email">
+              <div className="formWrapper">
+                <span className="formSpan">
+                  <MdAlternateEmail />
+                </span>
+                <Field
+                  className="authForm"
+                  type="text"
+                  id="email"
+                  name="email"
+                  placeholder="Enter your email"
+                />
+                <ErrorMessage
+                  className="formErrorMessage"
+                  name="email"
+                  component="span"
+                />
+              </div>
+            </label>
+            <label htmlFor="password">
+              <div className="formWrapper">
+                <span className="formSpan">
+                  <RiLockPasswordFill />
+                </span>
+                <Field
+                  className="authForm"
+                  type="password"
+                  name="password"
+                  placeholder="Enter your password"
+                  id="password"
+                />
+                <ErrorMessage
+                  className="formErrorMessage"
+                  name="password"
+                  component="span"
+                />
+              </div>
+            </label>
+            <button className="authBtn" type="submit">
+              Sign Up
+            </button>
+            {isError && <p>Oooops, some error occured... {isError}</p>}
+          </Form>
+        </Formik>
+      </SpotlightCard>
+    </div>
   );
 };
 

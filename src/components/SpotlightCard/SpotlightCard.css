@@ -1,4 +1,7 @@
 .card-spotlight {
+    margin: 0 auto;
+    min-width: 400px;
+    max-width: 400px;
     position: relative;
     border-radius: 1.5rem;
     border: 1px solid #222;
@@ -8,6 +11,7 @@
     --mouse-x: 50%;
     --mouse-y: 50%;
     --spotlight-color: rgba(255, 255, 255, 0.05);
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .card-spotlight::before {
