@@ -13,6 +13,7 @@ import css from "./EditForm.module.css";
 import { FaCheck } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import clsx from "clsx";
+import toast from "react-hot-toast";
 
 const EditForm = () => {
   const dispatch = useDispatch();
@@ -55,7 +56,9 @@ const EditForm = () => {
         updatedData: updatedContact,
       })
     ).then(() => {
-      dispatch(fetchContactsThunk());
+      dispatch(fetchContactsThunk()).then(() => {
+        toast.success(`The contact was edited succesfully`);
+      });
       dispatch(disableCurrentContact());
     });
   };

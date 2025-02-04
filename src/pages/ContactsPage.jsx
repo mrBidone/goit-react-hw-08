@@ -10,7 +10,7 @@ import {
   selectContactsLoading,
 } from "../redux/contacts/selectors";
 import { fetchContactsThunk } from "../redux/contacts/operations";
-import toast from "react-hot-toast";
+import { ConfirmProvider } from "material-ui-confirm";
 
 const ContactsPage = () => {
   const dispatch = useDispatch();
@@ -19,24 +19,22 @@ const ContactsPage = () => {
   const contacts = useSelector(selectContacts);
 
   useEffect(() => {
-    dispatch(fetchContactsThunk())
-      .unwrap()
-      .then(() => {
-        toast.success("Contacts was loaded"); // ==================== ??????????
-      });
+    dispatch(fetchContactsThunk());
   }, [dispatch]);
 
   return (
     <div>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      {contacts.length > 1 && <SearchBox />}
-      {!isLoading ? <ContactList /> : <Loader />}
-      {isError && (
-        <p style={{ color: "red" }}>
-          OOOPS... Error: "{isError}". Please try again later.
-        </p>
-      )}
+      <ConfirmProvider>
+        <h1>Phonebook</h1>
+        <ContactForm />
+        {contacts.length > 1 && <SearchBox />}
+        {!isLoading ? <ContactList /> : <Loader />}
+        {isError && (
+          <p style={{ color: "red" }}>
+            OOOPS... Error: "{isError}". Please try again later.
+          </p>
+        )}
+      </ConfirmProvider>
     </div>
   );
 };

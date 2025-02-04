@@ -6,14 +6,12 @@ import { selectCurrentContact } from "../../redux/contacts/selectors";
 import EditForm from "../EditForm/EditForm";
 import { RiEdit2Fill } from "react-icons/ri";
 import { MdDeleteForever } from "react-icons/md";
-import AlertDialog from "../DeleteConfirm/DeleteConfirm";
-import { useState } from "react";
+import toast from "react-hot-toast";
 
-const Contact = ({ name, number, onDeleteContact, id }) => {
+const Contact = ({ id, name, number, handleDeleteContact }) => {
   const dispatch = useDispatch();
   const isCurrentContact = useSelector(selectCurrentContact);
   const isCurrent = isCurrentContact?.id === id;
-  const [open, setOpen] = useState(false);
 
   const onEditContact = (contact) => {
     dispatch(currentContact(contact));
@@ -51,17 +49,12 @@ const Contact = ({ name, number, onDeleteContact, id }) => {
           <button
             className={css.contactBtn}
             type="button"
-            onClick={() => setOpen(true)}
+            onClick={() => handleDeleteContact(id, name)}
           >
             <MdDeleteForever />
           </button>
         </div>
       )}
-      <AlertDialog
-        open={open}
-        onClose={() => setOpen(false)}
-        onConfirm={() => onDeleteContact(id)} // Удаляем контакт
-      />
     </>
   );
 };

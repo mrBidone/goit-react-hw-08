@@ -10,7 +10,7 @@ const Loader = () => {
         paddingTop: 50,
       }}
     >
-      <FadeLoader color="#f7f5f5" />
+      <FadeLoader color="#e70fb1" />
     </div>
   );
 };

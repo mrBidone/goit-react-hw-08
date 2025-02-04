@@ -1,17 +1,17 @@
 .footer {
     display: flex;
     flex-direction: column;
-    min-width: 1440px;
+    width: 100%;
+    max-width: 1480px;
     border-top: 1px solid #808080;
     padding: 20px 10px;
 }
 
 .content {
+    width: 1440px;
     display: flex;
     justify-content: space-between;
 }
-
-
 
 .description {
     max-width: 116px;

@@ -1,12 +1,18 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import { instance } from "../auth/operations";
+import toast from "react-hot-toast";
 
 export const fetchContactsThunk = createAsyncThunk(
   "contacts/fetchAll",
   async (_, thunkApi) => {
     try {
       const { data } = await instance.get("contacts");
+      if (data.length === 0) {
+        toast.success("Your contact list is Empty. Please add new contact!");
+      } else {
+        toast.success("Contacts was loaded");
+      }
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);

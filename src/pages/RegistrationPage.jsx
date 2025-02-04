@@ -1,23 +1,23 @@
 import { Form, ErrorMessage, Field, Formik } from "formik";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import * as Yup from "yup";
 import { apiRegisterThunk } from "../redux/auth/operations";
-import { selectAuthError } from "../redux/auth/selectors";
 import SpotlightCard from "../components/SpotlightCard/SpotlightCard";
 import { FaRegUserCircle } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { MdAlternateEmail } from "react-icons/md";
+import toast from "react-hot-toast";
 
 const RegistrationValuesValidationSchema = Yup.object().shape({
   name: Yup.string()
     .required("The name is required!")
-    .min(2, "The User`s name must been min. 2 symbols")
-    .max(50, "The User`s name must been max. 50 symbols"),
+    .min(2, "The User`s name - min. 2 symbols")
+    .max(50, "The User`s name - max. 50 symbols"),
   password: Yup.string()
-    .required("The name is required!")
-    .min(8, "The password must been min. 8 symbols")
-    .max(30, "The password must been max. 30 symbols"),
+    .required("The password is required!")
+    .min(8, "The password - min. 8 symbols")
+    .max(30, "The password - max. 30 symbols"),
   email: Yup.string()
     .email("The email is not correct")
     .required("The email is required!"),
@@ -25,7 +25,6 @@ const RegistrationValuesValidationSchema = Yup.object().shape({
 
 const RegistrationPage = () => {
   const dispatch = useDispatch();
-  const isError = useSelector(selectAuthError);
 
   const INITITAL_VALUES = {
     name: "",
@@ -34,7 +33,9 @@ const RegistrationPage = () => {
   };
 
   const handleSubmit = (values) => {
-    dispatch(apiRegisterThunk(values));
+    dispatch(apiRegisterThunk(values))
+      .unwrap()
+      .then(() => toast.success("Registration was successful!"));
   };
 
   return (
@@ -107,7 +108,6 @@ const RegistrationPage = () => {
             <button className="authBtn" type="submit">
               Sign Up
             </button>
-            {isError && <p>Oooops, some error occured... {isError}</p>}
           </Form>
         </Formik>
       </SpotlightCard>

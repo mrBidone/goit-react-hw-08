@@ -19,6 +19,11 @@ export const apiRegisterThunk = createAsyncThunk(
 
       return data;
     } catch (error) {
+      if (error.status === 400) {
+        toast.error("A user with this email already exists.");
+      } else {
+        toast.error(error.message);
+      }
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -62,7 +67,6 @@ export const apiRefreshUserThunk = createAsyncThunk(
       const token = state.auth.token;
       setAuthHeaders(token);
       const { data } = await instance.get("users/current");
-      console.log("REFRESH:", data);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);

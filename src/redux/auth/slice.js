@@ -15,6 +15,7 @@ const INITIAL_STATE = {
   isLoggedIn: false,
   isRefreshing: false,
   error: null,
+  loading: false,
 };
 
 const authSlice = createSlice({
@@ -24,41 +25,53 @@ const authSlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(apiRegisterThunk.pending, (state) => {
+        state.loading = true;
         state.error = null;
       })
       .addCase(apiRegisterThunk.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
         state.isLoggedIn = true;
         state.token = action.payload.token;
         state.user = action.payload.user;
       })
       .addCase(apiRegisterThunk.rejected, (state, action) => {
         state.error = action.payload;
+        state.loading = false;
       })
       .addCase(apiLoginThunk.pending, (state) => {
+        state.loading = true;
         state.error = null;
       })
       .addCase(apiLoginThunk.fulfilled, (state, action) => {
         state.isLoggedIn = true;
         state.token = action.payload.token;
         state.user = action.payload.user;
+        state.loading = false;
+        state.error = null;
       })
       .addCase(apiLoginThunk.rejected, (state, action) => {
         state.error = action.payload;
+        state.loading = false;
       })
       .addCase(apiRefreshUserThunk.pending, (state) => {
+        state.loading = true;
         state.error = null;
         state.isRefreshing = true;
       })
       .addCase(apiRefreshUserThunk.fulfilled, (state, action) => {
+        state.loading = false;
         state.isLoggedIn = true;
         state.user = action.payload;
         state.isRefreshing = false;
       })
       .addCase(apiRefreshUserThunk.rejected, (state, action) => {
-        state.error = action.payload;
+        state.loading = false;
         state.isRefreshing = false;
+        state.error = action.payload;
       })
       .addCase(apiLogoutThunk.pending, (state) => {
+        state.loading = true;
         state.error = null;
       })
       .addCase(apiLogoutThunk.fulfilled, () => {
@@ -66,6 +79,7 @@ const authSlice = createSlice({
       })
       .addCase(apiLogoutThunk.rejected, (state, action) => {
         state.error = action.payload;
+        state.loading = false;
       }),
 });
 

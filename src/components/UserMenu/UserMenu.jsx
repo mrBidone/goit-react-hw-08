@@ -5,6 +5,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { IoMdLogOut } from "react-icons/io";
 import css from "./UserMenu.module.css";
+import toast from "react-hot-toast";
 
 const UserMenu = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,9 @@ const UserMenu = () => {
         className={css.logoutBtn}
         type="button"
         onClick={() => {
-          dispatch(apiLogoutThunk());
+          dispatch(apiLogoutThunk()).then(() =>
+            toast.success("Logout completed successfully!")
+          );
         }}
       >
         Logout

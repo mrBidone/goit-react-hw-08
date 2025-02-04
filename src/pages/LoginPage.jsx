@@ -7,6 +7,7 @@ import SpotlightCard from "../components/SpotlightCard/SpotlightCard";
 import { MdAlternateEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { Link } from "react-router";
+import toast from "react-hot-toast";
 
 const LoginValuesValidationSchema = Yup.object().shape({
   password: Yup.string()
@@ -20,7 +21,6 @@ const LoginValuesValidationSchema = Yup.object().shape({
 
 const LoginPage = () => {
   const dispatch = useDispatch();
-  const isError = useSelector(selectAuthError);
 
   const INITITAL_VALUES = {
     email: "",
@@ -28,7 +28,9 @@ const LoginPage = () => {
   };
 
   const handleSubmit = (values) => {
-    dispatch(apiLoginThunk(values));
+    dispatch(apiLoginThunk(values))
+      .unwrap()
+      .then(() => toast.success("Authorization was successful!"));
   };
 
   return (
@@ -88,10 +90,10 @@ const LoginPage = () => {
                 Register
               </Link>
             </p>
-            {isError && <p>Oooops, some error occured... {isError}</p>}
           </Form>
         </Formik>
       </SpotlightCard>
+      {/* {isError && <p>Oooops, some error occured... {isError}</p>} */}
     </div>
   );
 };
