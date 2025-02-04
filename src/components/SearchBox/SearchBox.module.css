@@ -1,9 +1,27 @@
+.searchBoxWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
 .searchLabel {
-  display: block;
-  text-align: start;
   font-size: 15px;
 }
 
 .searchInput {
   width: 95%;
+  height: 30px;
+  border: 2px solid #808080;
+  border-radius: 5px;
+  background-color: transparent;
+  padding: 4px;
+  font-size: 16px;
+  color: black;
+  outline: none;
+
+  &:focus {
+    border-color: #e70fb1;
+  }
 }

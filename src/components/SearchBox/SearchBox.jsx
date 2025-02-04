@@ -16,7 +16,7 @@ const SearchBox = () => {
   };
 
   return (
-    <>
+    <div className={css.searchBoxWrapper}>
       <label className={css.searchLabel} htmlFor={searchInputID}>
         Find contacts by name or numbers
       </label>
@@ -29,7 +29,7 @@ const SearchBox = () => {
         value={filterValue}
         onChange={handleFilter}
       />
-    </>
+    </div>
   );
 };
 

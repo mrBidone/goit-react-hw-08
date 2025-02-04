@@ -1,27 +1,24 @@
 .footer {
     display: flex;
     flex-direction: column;
-    max-width: 100%;
+    min-width: 1440px;
     border-top: 1px solid #808080;
-    padding: 50px 20px 50px 20px;
+    padding: 20px 10px;
 }
 
 .content {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 30px;
 }
 
-.mainContainer {}
 
-.mainTitle {}
 
 .description {
     max-width: 116px;
 }
 
 
-.contactsContainer {}
+
 
 .footerSubTitle {
     display: flex;
@@ -54,13 +51,6 @@
     align-items: center;
 }
 
-.socialNetworks {}
-
-.socialTitle {}
-
-.socialList {}
-
-.socialLink {}
 
 .privacyPolicy {
     color: #d4d3d3;

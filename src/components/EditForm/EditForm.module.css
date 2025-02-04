@@ -1,0 +1,48 @@
+.form {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.editFormWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-right: 100px;
+    align-items: center;
+    justify-content: center;
+}
+
+.formIcon {
+    margin-right: 5px;
+}
+
+
+
+.btnWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.editBtn {
+    border: none;
+    background-color: transparent;
+    line-height: 0;
+    font-size: 16px;
+    cursor: pointer;
+
+    &:disabled {
+        color: rgb(209, 206, 206);
+        cursor: default;
+    }
+}
+
+
+.submitBtn {
+    color: green;
+}
+
+.crossBtn {
+    color: red;
+}

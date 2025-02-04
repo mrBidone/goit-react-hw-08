@@ -1,6 +1,7 @@
 .pageNav {
     display: flex;
     gap: 10px;
+    align-items: center;
 }
 
 .pageNavLink {
@@ -16,4 +17,12 @@
     height: 2px;
     border-radius: 2px;
     background-color: rgb(231, 15, 177);
+}
+
+.pageNav::before {
+    content: " ";
+    width: 20px;
+    height: 20px;
+    background-color: rgb(231, 15, 177);
+    border-radius: 100%;
 }

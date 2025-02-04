@@ -2,26 +2,76 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 10px 10px;
-  border: 1px solid #ffffff;
-  border-radius: 5px;
+  padding: 20px 60px;
+  border: 2px solid #808080;
+  border-radius: 8px;
   gap: 5px;
   margin-bottom: 20px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
-.field {
-  width: 95%;
-  margin-bottom: 5px;
+.formWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.formSpan {
+  line-height: 0;
+  color: #808080;
+  font-size: 30px;
+}
+
+.contacthForm {
+  height: 25px;
+  width: 200px;
+  border: 2px solid #808080;
+  border-radius: 5px;
+  background-color: transparent;
+  padding: 2px 5px;
+  color: black;
+  font-size: 18px;
+  outline: none;
+
+  &:focus {
+    border-color: #e70fb1;
+  }
+
+  &::placeholder {
+    color: #bebebe
+  }
+}
+
+.formErrorMessage {
+  display: block;
+  position: absolute;
+  bottom: -25px;
+  left: 30px;
+  color: #e70fb1;
+  text-align: center;
+  font-size: 14px;
 }
 
 .submitBtn {
-  display: inline-block;
-  max-width: 150px;
-  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  background-color: transparent;
+  border: 1px solid #808080;
+  border-radius: 8px;
+  height: 40px;
   margin: 0 auto;
-}
+  min-width: 100px;
+  font-size: 18px;
+  color: #808080;
+  transition: border-color 250ms linear, color 250ms linear;
+  cursor: pointer;
 
-.errorMessage {
-  font-size: 10px;
-  color: red;
+  &:hover {
+    border-color: #e70fb1;
+    color: black;
+  }
 }

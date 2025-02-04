@@ -9,6 +9,10 @@ import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useId } from "react";
 import { FaPhoneAlt, FaUser } from "react-icons/fa";
+import css from "./EditForm.module.css";
+import { FaCheck } from "react-icons/fa";
+import { ImCross } from "react-icons/im";
+import clsx from "clsx";
 
 const EditForm = () => {
   const dispatch = useDispatch();
@@ -65,46 +69,57 @@ const EditForm = () => {
         validationSchema={ContactValidationSchema}
       >
         {({ dirty }) => (
-          <Form
-          //   className={css.form}
-          >
-            <label htmlFor={editNameFieldId}>
-              <FaUser />
-            </label>
-            <Field
-              //   className={css.field}
-              type="text"
-              name="editContactName"
-              id={editNameFieldId}
-            />
-            <ErrorMessage
-              //   className={css.errorMessage}
-              name="editContactName"
-              component="span"
-            />
-            <label htmlFor={editNumberFieldId}>
-              <FaPhoneAlt />
-            </label>
-            <Field
-              //   className={css.field}
-              type="text"
-              name="editContactNumber"
-              id={editNumberFieldId}
-            />
-            <ErrorMessage
-              //   className={css.errorMessage}
-              name="editContactNumber"
-              component="span"
-            />
-            <button type="submit" disabled={!dirty}>
-              ✅
-            </button>
-            <button
-              onClick={() => dispatch(disableCurrentContact())}
-              type="button"
-            >
-              ❌
-            </button>
+          <Form className={css.form}>
+            <div className={css.editFormWrapper}>
+              <label htmlFor={editNameFieldId}>
+                <span className={css.formIcon}>
+                  <FaUser />
+                </span>
+                <Field
+                  className={css.field}
+                  type="text"
+                  name="editContactName"
+                  id={editNameFieldId}
+                />
+                <ErrorMessage
+                  className={css.errorMessage}
+                  name="editContactName"
+                  component="span"
+                />
+              </label>
+              <label htmlFor={editNumberFieldId}>
+                <span className={css.formIcon}>
+                  <FaPhoneAlt />
+                </span>
+                <Field
+                  className={css.field}
+                  type="text"
+                  name="editContactNumber"
+                  id={editNumberFieldId}
+                />
+                <ErrorMessage
+                  className={css.errorMessage}
+                  name="editContactNumber"
+                  component="span"
+                />
+              </label>
+            </div>
+            <div className={css.btnWrapper}>
+              <button
+                className={clsx(css.editBtn, css.submitBtn)}
+                type="submit"
+                disabled={!dirty}
+              >
+                <FaCheck />
+              </button>
+              <button
+                className={clsx(css.editBtn, css.crossBtn)}
+                onClick={() => dispatch(disableCurrentContact())}
+                type="button"
+              >
+                <ImCross />
+              </button>
+            </div>
           </Form>
         )}
       </Formik>

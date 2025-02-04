@@ -1,20 +1,12 @@
 .headerContainer {
-    margin: 0 auto;
+    display: flex;
+    width: 100%;
     max-width: 1440px;
 }
 
 .pageHeader {
+    padding: 10px 50px;
     display: flex;
-    align-items: center;
-    padding: 20px 30px;
     justify-content: space-between;
-}
-
-.pageHeader::before {
-    content: " ";
-    width: 20px;
-    height: 20px;
-    background-color: rgb(231, 15, 177);
-    border-radius: 100%;
-    margin-right: 10px;
+    align-items: center;
 }

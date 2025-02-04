@@ -12,3 +12,27 @@
 .telIcon {
   margin-right: 10px;
 }
+
+.btnWrapper {
+  display: flex;
+  gap: 5px;
+}
+
+.contactBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  background-color: #808080;
+  transition: background-color 250ms linear;
+
+  &:hover {
+    background-color: black;
+  }
+}

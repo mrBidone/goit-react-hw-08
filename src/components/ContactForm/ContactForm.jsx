@@ -7,6 +7,8 @@ import "react-international-phone/style.css";
 import { useDispatch } from "react-redux";
 import { addContactThunk } from "../../redux/contacts/operations";
 import toast from "react-hot-toast";
+import { FaRegUserCircle } from "react-icons/fa";
+import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
 
 const ContactForm = () => {
   const dispatch = useDispatch();
@@ -35,10 +37,7 @@ const ContactForm = () => {
     contactNumber: Yup.string()
       .required("Required!")
       .min(7, "Too Short!")
-      .matches(
-        phoneRegExp,
-        "The phone number must match the format 'xxx-xxx-xx-xx'"
-      ),
+      .matches(phoneRegExp, "Correct format: 'xxx-xxx-xx-xx'"),
   });
 
   const nameFieldId = useId();
@@ -62,39 +61,45 @@ const ContactForm = () => {
       >
         {({ isValid, dirty }) => (
           <Form className={css.form}>
-            <label className={css.label} htmlFor={nameFieldId}>
-              Name
+            <label htmlFor={nameFieldId}>
+              <div className="formWrapper">
+                <span className={css.formSpan}>
+                  <FaRegUserCircle />
+                </span>
+                <Field
+                  className={css.contacthForm}
+                  type="text"
+                  name="contactName"
+                  id={nameFieldId}
+                  placeholder="John Smith"
+                />
+                <ErrorMessage
+                  className={css.formErrorMessage}
+                  name="contactName"
+                  component="span"
+                />
+              </div>
             </label>
-            <Field
-              className={css.field}
-              type="text"
-              name="contactName"
-              id={nameFieldId}
-              placeholder="John Smith"
-            />
-            <ErrorMessage
-              className={css.errorMessage}
-              name="contactName"
-              component="span"
-            />
-
             <label className={css.label} htmlFor={numberFieldId}>
-              Number
+              <div className="formWrapper">
+                <span className={css.formSpan}>
+                  <HiOutlineDevicePhoneMobile />
+                </span>
+                <Field
+                  className={css.contacthForm}
+                  type="text"
+                  name="contactNumber"
+                  id={numberFieldId}
+                  placeholder="111-222-33-44"
+                />
+
+                <ErrorMessage
+                  className={css.formErrorMessage}
+                  name="contactNumber"
+                  component="span"
+                />
+              </div>
             </label>
-            <Field
-              className={css.field}
-              type="text"
-              name="contactNumber"
-              id={numberFieldId}
-              placeholder="111-222-33-44"
-            />
-
-            <ErrorMessage
-              className={css.errorMessage}
-              name="contactNumber"
-              component="span"
-            />
-
             <button
               className={css.submitBtn}
               type="submit"
