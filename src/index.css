@@ -86,6 +86,9 @@ main {
   padding: 30px 20px;
 }
 
+.heroContainer {
+  width: 100vw;
+}
 
 .mainTitle {
   position: relative;
