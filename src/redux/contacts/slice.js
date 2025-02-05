@@ -5,6 +5,7 @@ import {
   editContactThunk,
   fetchContactsThunk,
 } from "./operations";
+import { apiLogoutThunk } from "../auth/operations";
 
 const INITIAL_STATE = {
   items: [],
@@ -79,6 +80,9 @@ export const contactsSlice = createSlice({
       .addCase(editContactThunk.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      .addCase(apiLogoutThunk.fulfilled, () => {
+        return INITIAL_STATE;
       });
   },
 });
