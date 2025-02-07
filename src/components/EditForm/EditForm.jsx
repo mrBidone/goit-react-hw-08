@@ -1,9 +1,6 @@
 import { selectCurrentContact } from "../../redux/contacts/selectors";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  editContactThunk,
-  fetchContactsThunk,
-} from "../../redux/contacts/operations";
+import { editContactThunk } from "../../redux/contacts/operations";
 import { disableCurrentContact } from "../../redux/contacts/slice";
 import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
@@ -55,12 +52,13 @@ const EditForm = () => {
         contactId: currentContact.id,
         updatedData: updatedContact,
       })
-    ).then(() => {
-      dispatch(fetchContactsThunk()).then(() => {
+    )
+      .then(() => {
         toast.success(`The contact was edited succesfully`);
+      })
+      .then(() => {
+        dispatch(disableCurrentContact());
       });
-      dispatch(disableCurrentContact());
-    });
   };
 
   return (
